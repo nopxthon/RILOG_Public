@@ -3,6 +3,7 @@
 Aplikasi manajemen gudang berbasis web.
 
 ## Tech Stack
+- Frontend: Next.js
 - Backend: Node.js (Express)
 - Database: MySQL
 - Infrastructure: Docker
