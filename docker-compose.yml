@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # === 1. DATABASE ===
+  db:
+    image: mysql:8.0
+    container_name: rilog-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rilog_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # === 2. BACKEND ===
+  backend:
+    build: ./rilog_server     # <--- Pastikan nama folder ini SESUAI dengan nama folder repo backend Abang
+    container_name: rilog-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db              # PENTING: Connect ke service 'db', bukan localhost
+      DB_USER: root
+      DB_PASS: root
+      DB_NAME: rilog_db
+      PORT: 5000
+
+  # === 3. FRONTEND ===
+  frontend:
+    build: ./rilog_client    # <--- Pastikan nama folder ini SESUAI dengan nama folder repo frontend Abang
+    container_name: rilog-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:5000
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

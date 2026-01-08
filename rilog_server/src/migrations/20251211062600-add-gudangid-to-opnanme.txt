@@ -1,0 +1,18 @@
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.addColumn('opnames', 'gudang_id', {
+      type: Sequelize.INTEGER,
+      allowNull: true, // Ubah ke false jika Opname WAJIB punya gudang
+      references: {
+        model: 'gudangs', // Pastikan nama tabel gudang di DB (biasanya plural)
+        key: 'id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'SET NULL',
+    });
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.removeColumn('opnames', 'gudang_id');
+  }
+};

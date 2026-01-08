@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+
+# Misc
+.DS_Store
+
+# Abaikan semua isi folder payments
+uploads/payments/*
+
+
+!uploads/payments/.gitkeep
+
+# Ignore Seeder Rahasia
+src/seeders/20251017000203-superadmin-seeder.js
