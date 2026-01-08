@@ -9,11 +9,14 @@ yarn-error.log
 # Misc
 .DS_Store
 
-# Abaikan semua isi folder payments
+# Abaikan semua isi folder payments dan profile
 uploads/payments/*
 
-
 !uploads/payments/.gitkeep
+
+uploads/profile/*
+
+!uploads/profile/.gitkeep
 
 # Ignore Seeder Rahasia
 src/seeders/20251017000203-superadmin-seeder.js
