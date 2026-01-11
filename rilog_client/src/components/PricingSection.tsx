@@ -17,8 +17,10 @@ export default function PricingSection() {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        // Ganti URL sesuai backend Anda
-        const response = await axios.get("http://localhost:5000/api/sub-plans");
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        
+        const response = await axios.get(`${apiUrl}/api/sub-plans`);
+        
         // Asumsi response backend: { data: [...] } atau [...]
         const rawData = response.data.data || response.data;
         setPlans(Array.isArray(rawData) ? rawData : []);

@@ -83,9 +83,13 @@ export default function ConfirmationPage() {
       setPreviewUrl(null);
   };
 
+
+
   // Handle Submit Form
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
     if (!buktiFile || !namaPengirim || !bankPengirim) {
       Swal.fire("Error", "Harap lengkapi semua data dan upload bukti transfer.", "error");
@@ -109,7 +113,7 @@ export default function ConfirmationPage() {
       formData.append("keterangan", `Pembayaran paket ${selectedPlan.nama_paket}`);
       formData.append("bukti_pembayaran", buktiFile);
 
-      await axios.post("http://localhost:5000/api/payment/create", formData, {
+      await axios.post(`${API_BASE_URL}/api/payment/create`, formData, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

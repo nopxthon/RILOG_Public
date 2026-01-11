@@ -58,7 +58,9 @@ const UbahKataSandiSection: FC = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/api/password/change", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${apiUrl}/api/password/change`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
